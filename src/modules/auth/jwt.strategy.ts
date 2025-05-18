@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-argument */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
@@ -6,6 +5,7 @@ import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { PassportStrategy } from '@nestjs/passport';
 import { Strategy, ExtractJwt } from 'passport-jwt';
 import { UserService } from '../user/user.service';
+import { TAuthPayload } from './type/auth.type';
 
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy) {
@@ -16,9 +16,9 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
     });
   }
 
-  async validate(payload: any) {
+  async validate(payload: { email: string }): Promise<TAuthPayload> {
     const user = await this.usersService.findByEmail(payload.email);
     if (!user) throw new UnauthorizedException();
-    return { id: user.id, email: user.email };
+    return { sub: user.id, email: user.email };
   }
 }

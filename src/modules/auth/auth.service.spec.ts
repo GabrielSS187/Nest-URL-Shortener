@@ -1,5 +1,6 @@
-// src/modules/auth/auth.service.spec.ts
-
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { Test, TestingModule } from '@nestjs/testing';
 import { AuthService } from './auth.service';
 import { UserService } from '../user/user.service';
@@ -8,6 +9,7 @@ import { InMemoryUserRepository } from '../user/repositories/in-memory-user.repo
 import { JwtModule } from '@nestjs/jwt';
 import * as bcrypt from 'bcrypt';
 import { UserEntity } from '../user/entities/user.entity';
+import { TAuthPayload } from './type/auth.type';
 
 describe('AuthService', () => {
   let service: AuthService;
@@ -20,7 +22,7 @@ describe('AuthService', () => {
       imports: [
         JwtModule.register({
           secret: process.env.JWT_SECRET,
-          signOptions: { expiresIn: '1h' },
+          signOptions: { expiresIn: '1d' },
         }),
       ],
       providers: [
@@ -65,7 +67,9 @@ describe('AuthService', () => {
     const { access_token } = await service.login(dummy);
 
     expect(access_token).toBeDefined();
-    const payload: any = (service as any).jwtService.decode(access_token);
+    const payload: TAuthPayload = (service as any).jwtService.decode(
+      access_token,
+    );
     expect(payload.sub).toBe(dummy.id);
     expect(payload.email).toBe(dummy.email);
   });
