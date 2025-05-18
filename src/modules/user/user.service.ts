@@ -1,8 +1,8 @@
 import {
   Injectable,
   Inject,
-  BadRequestException,
   NotFoundException,
+  ConflictException,
 } from '@nestjs/common';
 import {
   USER_REPOSITORY,
@@ -19,7 +19,7 @@ export class UserService {
 
   async register(email: string, password: string): Promise<UserEntity> {
     if (await this.repo.findByEmail(email)) {
-      throw new BadRequestException('Email já cadastrado');
+      throw new ConflictException('Email já cadastrado');
     }
     const hash = await bcrypt.hash(password, 10);
     return this.repo.create(email, hash);

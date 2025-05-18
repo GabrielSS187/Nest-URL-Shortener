@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
 import { Test, TestingModule } from '@nestjs/testing';
-import { UserService } from './user.service';
-import { USER_REPOSITORY } from './repositories/user.repository';
-import { InMemoryUserRepository } from './repositories/in-memory-user.repository';
-import { BadRequestException, NotFoundException } from '@nestjs/common';
+import { UserService } from '../user.service';
+import { USER_REPOSITORY } from '../repositories/user.repository';
+import { InMemoryUserRepository } from '../repositories/in-memory-user.repository';
+import { ConflictException, NotFoundException } from '@nestjs/common';
 import * as bcrypt from 'bcrypt';
 
 describe('UserService', () => {
@@ -44,7 +44,7 @@ describe('UserService', () => {
     const email = 'dup@example.com';
     await service.register(email, 'senha1');
     await expect(service.register(email, 'senha2')).rejects.toBeInstanceOf(
-      BadRequestException,
+      ConflictException,
     );
   });
 

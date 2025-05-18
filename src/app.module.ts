@@ -2,6 +2,9 @@ import { Module } from '@nestjs/common';
 import { APP_GUARD } from '@nestjs/core';
 import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
 import { LoggerModule } from 'nestjs-pino';
+import { AuthModule } from './modules/auth/auth.module';
+import { UserModule } from './modules/user/user.module';
+import { UrlModule } from './modules/url/url.module';
 
 @Module({
   imports: [
@@ -22,6 +25,9 @@ import { LoggerModule } from 'nestjs-pino';
         level: process.env.NODE_ENV !== 'production' ? 'debug' : 'info',
       },
     }),
+    AuthModule,
+    UserModule,
+    UrlModule,
   ],
   controllers: [],
   providers: [{ provide: APP_GUARD, useClass: ThrottlerGuard }],

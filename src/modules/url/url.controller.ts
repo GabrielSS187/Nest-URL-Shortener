@@ -23,6 +23,7 @@ export class UrlController {
 
   @Post()
   @HttpCode(201)
+  @UseGuards(AuthGuard('jwt'))
   async shorten(@Body() dto: CreateUrlDto, @Req() req: Request) {
     const userId = (req as any).user?.sub as number;
     const url = await this.urlService.shorten(dto.destination, userId);
@@ -33,7 +34,7 @@ export class UrlController {
   @Get()
   @UseGuards(AuthGuard('jwt'))
   async list(@Req() req: Request): Promise<UrlWithClicksDto[]> {
-    const userId = (req as any).user.id as number;
+    const userId = (req as any).user.sub as number;
     return this.urlService.listUrlsWithClicks(userId);
   }
 

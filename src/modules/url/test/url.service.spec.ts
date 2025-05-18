@@ -1,9 +1,9 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { UrlService, UrlWithClicksDto } from './url.service';
-import { URL_REPOSITORY } from './repositories/url.repository';
-import { ACCESS_LOG_REPOSITORY } from '../access-log/repositories/access-log.repository';
-import { InMemoryUrlRepository } from './repositories/in-memory-url.repository';
-import { InMemoryAccessLogRepository } from '../access-log/repositories/in-memory-access-log.repository';
+import { UrlService, UrlWithClicksDto } from '../url.service';
+import { URL_REPOSITORY } from '../repositories/url.repository';
+import { ACCESS_LOG_REPOSITORY } from '../../access-log/repositories/access-log.repository';
+import { InMemoryUrlRepository } from '../repositories/in-memory-url.repository';
+import { InMemoryAccessLogRepository } from '../../access-log/repositories/in-memory-access-log.repository';
 import { NotFoundException } from '@nestjs/common';
 
 describe('UrlService', () => {

@@ -2,14 +2,14 @@
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { Test, TestingModule } from '@nestjs/testing';
-import { AuthService } from './auth.service';
-import { UserService } from '../user/user.service';
-import { USER_REPOSITORY } from '../user/repositories/user.repository';
-import { InMemoryUserRepository } from '../user/repositories/in-memory-user.repository';
+import { AuthService } from '../auth.service';
+import { UserService } from '../../user/user.service';
+import { USER_REPOSITORY } from '../../user/repositories/user.repository';
+import { InMemoryUserRepository } from '../../user/repositories/in-memory-user.repository';
 import { JwtModule } from '@nestjs/jwt';
 import * as bcrypt from 'bcrypt';
-import { UserEntity } from '../user/entities/user.entity';
-import { TAuthPayload } from './type/auth.type';
+import { UserEntity } from '../../user/entities/user.entity';
+import { TAuthPayload } from '../type/auth.type';
 
 describe('AuthService', () => {
   let service: AuthService;
