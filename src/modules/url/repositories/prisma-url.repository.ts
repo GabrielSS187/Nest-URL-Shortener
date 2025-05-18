@@ -1,5 +1,3 @@
-// src/modules/url/repositories/prisma-url.repository.ts
-
 import { Injectable } from '@nestjs/common';
 import { IUrlRepository } from './url.repository';
 import { UrlEntity } from '../entities/url.entity';

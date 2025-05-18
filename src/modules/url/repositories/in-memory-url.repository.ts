@@ -46,11 +46,22 @@ export class InMemoryUrlRepository implements IUrlRepository {
     if (idx === -1) {
       return Promise.reject(new Error('URL not found'));
     }
-    const url = this.urls[idx];
-    url.destination = destination;
-    url.updatedAt = new Date(url.updatedAt.getTime() + 1);
-    this.urls[idx] = url;
-    return Promise.resolve(url);
+
+    const old = this.urls[idx];
+    const newUpdatedAt = new Date(old.updatedAt.getTime() + 1);
+
+    const updated = new UrlEntity(
+      old.id,
+      old.shortCode,
+      destination,
+      old.userId,
+      old.createdAt,
+      newUpdatedAt,
+      old.deletedAt,
+    );
+
+    this.urls[idx] = updated;
+    return Promise.resolve(updated);
   }
 
   softDelete(id: number): Promise<void> {
