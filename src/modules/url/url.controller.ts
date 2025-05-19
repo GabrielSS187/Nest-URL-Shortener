@@ -8,7 +8,6 @@ import {
   Patch,
   Delete,
   Req,
-  Res,
   UseGuards,
   HttpCode,
 } from '@nestjs/common';
@@ -64,11 +63,5 @@ export class UrlController {
   @HttpCode(204)
   async remove(@Param('id') id: string) {
     await this.urlService.remove(+id);
-  }
-
-  @Get(':shortCode')
-  async redirect(@Param('shortCode') code: string, @Res() res: Response) {
-    const destination = await this.urlService.redirect(code);
-    return res.redirect(destination);
   }
 }

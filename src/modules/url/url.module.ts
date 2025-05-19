@@ -5,6 +5,7 @@ import { UrlController } from './url.controller';
 import { URL_REPOSITORY } from './repositories/url.repository';
 import { PrismaUrlRepository } from './repositories/prisma-url.repository';
 import { AccessLogModule } from '../access-log/access-log.module';
+import { UrlRedirectController } from './url-redirect.controller';
 
 @Module({
   imports: [PrismaModule, AccessLogModule],
@@ -15,6 +16,6 @@ import { AccessLogModule } from '../access-log/access-log.module';
       useClass: PrismaUrlRepository,
     },
   ],
-  controllers: [UrlController],
+  controllers: [UrlController, UrlRedirectController],
 })
 export class UrlModule {}
