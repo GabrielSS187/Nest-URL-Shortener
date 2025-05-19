@@ -14,6 +14,7 @@ import { InMemoryUrlRepository } from '../repositories/in-memory-url.repository'
 import { ACCESS_LOG_REPOSITORY } from '../../access-log/repositories/access-log.repository';
 import { InMemoryAccessLogRepository } from '../../access-log/repositories/in-memory-access-log.repository';
 import { AuthGuard } from '@nestjs/passport';
+import { OptionalJwtAuthGuard } from '../../../modules/auth/optional-jwt-auth.guard';
 
 class PrismaServiceStub {
   async onModuleInit() {}
@@ -46,6 +47,14 @@ describe('UrlController (e2e)', () => {
         canActivate: (context) => {
           const req = context.switchToHttp().getRequest();
           req.user = { sub: 1, email: 'e2e@url.com' };
+          return true;
+        },
+      })
+      .overrideGuard(OptionalJwtAuthGuard)
+      .useValue({
+        canActivate: (context) => {
+          const req = context.switchToHttp().getRequest();
+          req.user = { sub: 1, email };
           return true;
         },
       })
