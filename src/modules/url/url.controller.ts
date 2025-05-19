@@ -16,6 +16,7 @@ import { UrlService, UrlWithClicksDto } from './url.service';
 import { CreateUrlDto } from './dto/create-url.dto';
 import { AuthGuard } from '@nestjs/passport';
 import { Response, Request } from 'express';
+import { OptionalJwtAuthGuard } from '../auth/optional-jwt-auth.guard';
 
 @Controller('urls')
 export class UrlController {
@@ -23,7 +24,7 @@ export class UrlController {
 
   @Post()
   @HttpCode(201)
-  @UseGuards(AuthGuard('jwt'))
+  @UseGuards(OptionalJwtAuthGuard)
   async shorten(@Body() dto: CreateUrlDto, @Req() req: Request) {
     const userId = (req as any).user?.sub as number;
     const url = await this.urlService.shorten(dto.destination, userId);
