@@ -28,10 +28,11 @@ API RESTful construída com **NestJS** para encurtar URLs, registrar acessos e f
 # ☁️ API Na Cloud Da Render
 - https://nest-url-shortener-xoy1.onrender.com/api
 - https://nest-url-shortener-xoy1.onrender.com/docs
+- O meu plano na nuvem é gratuito, então leve em consideração o tempo de latência da aplicação.
 
 # 📹 Vídeo Construindo CI/CD
 - Vídeo: https://drive.google.com/file/d/1v0bEdVDQH-ytGTOJV8NNxKheED99IjL6/view?usp=sharing
-- Descrição: CI/CD com Github Actions Com deploy na cloud da Render
+- Descrição: CI/CD com Github Actions com deploy na cloud da Render
 
 ## 📦 Tecnologias
 
