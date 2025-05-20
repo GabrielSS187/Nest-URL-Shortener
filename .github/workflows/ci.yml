@@ -56,9 +56,7 @@ jobs:
       - name: Run e2e tests
         run: npm run test:e2e
   
-  deploy: 
-    if: false
-    
+  deploy:    
     needs: build-and-test
     runs-on: ubuntu-latest
 
