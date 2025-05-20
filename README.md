@@ -1,98 +1,315 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# 🔗 Nest URL Shortener API
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+API RESTful construída com **NestJS** para encurtar URLs, registrar acessos e fornecer estatísticas de cliques. Desenvolvida com foco em **Clean Architecture**, segurança, performance e extensibilidade.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+---
 
-## Description
+## 📋 Sumário
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+- [📦 Tecnologias](#-tecnologias)  
+- [🚀 Como executar](#-como-executar)  
+  - [🔧 Requisitos](#-requisitos)  
+  - [🧱 Modo local](#-modo-local)  
+  - [🐳 Com Docker](#-com-docker)  
+- [📡 Endpoints da API](#-endpoints-da-api)  
+- [🧪 Testes](#-testes)  
+- [🧱 Arquitetura](#-arquitetura)  
+- [🔐 Segurança](#-segurança)  
+- [📝 Documentação Swagger](#-documentação-swagger)  
+- [📦 CI/CD](#-cicd)  
+- [📁 Variáveis de ambiente](#-variáveis-de-ambiente)  
+- [📄 Mapeamento do banco de dados (ERD simplificado)](#-mapeamento-do-banco-de-dados-erd-simplificado) 
+- [🧱 Arquitetura do Projeto](#-arquitetura-do-projeto) 
+- [⚙️ Melhorias futuras e escalabilidade](#-melhorias-futuras-e-escalabilidad)
+- [🧑‍💻 Autor](#-autor)  
 
-## Project setup
+---
 
-```bash
-$ npm install
-```
+## 📦 Tecnologias
 
-## Compile and run the project
+- [NestJS](https://nestjs.com/)  
+- TypeScript  
+- [Prisma](https://www.prisma.io/) + PostgreSQL  
+- Swagger (`@nestjs/swagger`)  
+- JWT com Passport (`@nestjs/jwt`, `passport-jwt`)  
+- Validação de DTOs com `class-validator` + `ValidationPipe`  
+- Segurança HTTP com [Helmet](https://helmetjs.github.io/)  
+- Limite de requisições com `@nestjs/throttler`  
+- Logs estruturados com [nestjs-pino](https://github.com/iamolegga/nestjs-pino)  
+- Testes com [Jest](https://jestjs.io/) e [Supertest](https://github.com/visionmedia/supertest)  
+- Contêineres com Docker & Docker Compose  
+- CI/CD com GitHub Actions  
 
-```bash
-# development
-$ npm run start
+---
 
-# watch mode
-$ npm run start:dev
+## 🚀 Como executar
 
-# production mode
-$ npm run start:prod
-```
+### 🔧 Requisitos
 
-## Run tests
+- [Node.js](https://nodejs.org/) 20+  
+- [npm](https://www.npmjs.com/)  
+- [Docker](https://www.docker.com/) (opcional)
 
-```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
-```
-
-## Deployment
-
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
-
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+### 🧱 Modo local
 
 ```bash
-$ npm install -g @nestjs/mau
-$ mau deploy
+# Instale dependências
+npm ci
+
+# Rode em modo de desenvolvimento
+npm run start:dev
+```
+A API estará em: http://localhost:3000/api
+
+Swagger UI: http://localhost:3000/docs
+
+🐳 Com Docker
+```bash
+# Ambiente de desenvolvimento
+docker compose --profile dev up --build
+
+# Ambiente de produção
+docker compose --profile prod up --build
+```
+A API estará em: http://localhost:3000/api
+
+Swagger UI: http://localhost:3000/docs
+
+# Testes unitários
+```bash
+npm run test
+
+# Testes E2E
+npm run test:e2e
+
+# Cobertura
+npm run test:cov
 ```
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+Com Docker
+```bash
+docker compose --profile test run --rm nest-test
+```
 
-## Resources
 
-Check out a few resources that may come in handy when working with NestJS:
+# 🧱 Arquitetura
+Clean Architecture + DDD
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+Módulos isolados por responsabilidade:
 
-## Support
+modules/auth – autenticação JWT
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+modules/user – cadastro e gerenciamento de usuários
 
-## Stay in touch
+modules/url – encurtamento, listagem, atualização e remoção de URLs
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+modules/access-log – registro de acessos para estatísticas
 
-## License
+modules/prisma – configuração e serviço do Prisma ORM
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+Repositórios (interfaces) + implementações (Prisma / In-Memory)
+
+Controllers → Services → Repositories → Entities
+
+# 🔐 Segurança
+JWT para rotas privadas
+
+ValidationPipe + class-validator para validação de DTOs
+
+Rate limiting com @nestjs/throttler
+
+Helmet para cabeçalhos HTTP seguros
+
+Logs estruturados com nestjs-pino
+
+📝 Documentação Swagger
+Acesse: http://localhost:3000/docs
+
+Todos os endpoints documentados com exemplos de request/response
+
+Autenticação Bearer configurada no Swagger UI
+
+# 📦 CI/CD
+Este projeto inclui um workflow de CI com GitHub Actions em .github/workflows/ci.yml:
+
+```yaml
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:15
+        ports:
+          - 5433:5432
+        env:
+          POSTGRES_USER: root
+          POSTGRES_PASSWORD: root
+          POSTGRES_DB: root
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    env:
+      DATABASE_URL: postgres://root:root@localhost:5433/root
+      JWT_SECRET: test-secret
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 22
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Generate Prisma client
+        run: npx prisma generate
+
+      - name: Run Prisma migrations
+        run: npx prisma migrate deploy
+
+      - name: Run linter
+        run: npm run lint
+
+      - name: Run unit tests
+        run: npm run test
+
+      - name: Run e2e tests
+        run: npm run test:e2e
+
+  # job de deploy está desabilitado por padrão
+  deploy:
+    if: false
+    needs: build-and-test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy (placeholder)
+        run: echo "🚀 Simulando deploy para produção com tag ${{ github.ref }}"
+```
+gatilhos: push e pull_request na branch main
+
+serviço de teste: PostgreSQL
+
+passos: checkout, Node.js, npm ci, Prisma, lint, testes unitários e E2E
+
+# 📁 Variáveis de ambiente
+Exemplo de .env ou .env.example:
+
+```env
+NODE_ENV=development
+PORT=3000
+BASE_URL=http://localhost:3000
+DATABASE_URL=postgresql://postgres:postgres@localhost:5432/ps_shortener
+JWT_SECRET=sua_chave_secreta_aqui
+```
+
+# 📄 Mapeamento do banco de dados (ERD simplificado)
+```md
+## 🧩 Modelagem do Banco de Dados
+
+### 🔐 Tabela `users`
+
+| Campo       | Tipo       | Descrição                     |
+|-------------|------------|-------------------------------|
+| id          | Int (PK)   | Identificador do usuário      |
+| email       | String     | E-mail único                  |
+| password    | String     | Hash da senha                 |
+| createdAt   | DateTime   | Criado em                     |
+| updatedAt   | DateTime   | Atualizado em                 |
+| deletedAt   | DateTime?  | Deletado logicamente          |
+
+---
+
+### 🔗 Tabela `short_urls`
+
+| Campo        | Tipo       | Descrição                         |
+|--------------|------------|-----------------------------------|
+| id           | Int (PK)   | Identificador do encurtamento     |
+| shortCode    | String     | Código único de 6 caracteres      |
+| destination  | String     | URL original                      |
+| userId       | Int? (FK)  | ID do usuário (nullable)          |
+| createdAt    | DateTime   | Criado em                         |
+| updatedAt    | DateTime   | Atualizado em                     |
+| deletedAt    | DateTime?  | Deletado logicamente              |
+
+---
+
+### 📈 Tabela `access_logs`
+
+| Campo     | Tipo       | Descrição                        |
+|-----------|------------|----------------------------------|
+| id        | Int (PK)   | Identificador do log             |
+| urlId     | Int (FK)   | Referência ao short_url          |
+| timestamp | DateTime   | Quando o clique ocorreu          |
+
+```
+
+# 🧱 Arquitetura do Projeto
+```bash
+src/
+├── app.module.ts               # Módulo principal
+├── main.ts                     # Bootstrap da aplicação
+├── modules/
+│   ├── auth/                   # Autenticação (login, JWT, Guards)
+│   │   ├── dto/                # LoginDto, LoginResponseDto
+│   │   ├── entities/           # (nenhuma entidade própria)
+│   │   ├── repositories/       # IUserRepository, in-memory & Prisma
+│   │   ├── auth.controller.ts
+│   │   ├── auth.service.ts
+│   │   ├── jwt.strategy.ts
+│   │   └── optional-jwt-auth.guard.ts
+│   ├── user/                   # Cadastro e domínio do usuário
+│   │   ├── dto/                # CreateUserDto, UserResponseDto
+│   │   ├── entities/           # UserEntity
+│   │   ├── repositories/       # IUserRepository, in-memory & Prisma
+│   │   ├── user.controller.ts
+│   │   └── user.service.ts
+│   ├── url/                    # Encurtamento, listagem e redirecionamento
+│   │   ├── dto/                # CreateUrlDto, ShortenUrlResponseDto, UrlWithClicksDto
+│   │   ├── entities/           # UrlEntity
+│   │   ├── repositories/       # IUrlRepository, in-memory & Prisma
+│   │   ├── url.controller.ts
+│   │   ├── url-redirect.controller.ts
+│   │   └── url.service.ts
+│   ├── access-log/             # Registro e contagem de cliques
+│   │   ├── entities/           # AccessLogEntity
+│   │   ├── repositories/       # IAccessLogRepository, in-memory & Prisma
+│   │   └── access-log.module.ts
+│   ├── health/                 # Health check
+│   │   ├── health.controller.ts
+│   │   └── health.module.ts
+│   └── prisma/                 # PrismaService (global)
+│       ├── prisma.module.ts
+│       └── prisma.service.ts
+├── prisma/                     # Schema do banco (Prisma)
+│   └── schema.prisma
+└── .github/                    # Fluxos de CI/CD
+    └── workflows/
+        └── ci.yml
+
+```
+
+# ⚙️ Melhorias futuras e escalabilidade
+- 🔐 Implementar refresh tokens e expiração de sessão
+- 🧠 Cache com Redis para shortCodes mais acessados
+- 📊 Dashboard com métricas e relatórios para usuários autenticados
+- ✈️ Deploy com Fly.io, Render ou Vercel Functions (monorepo adaptável)
+
+
+# 🧑‍💻 Autor
+Este projeto foi desenvolvido por Seu Nome.
+https://www.linkedin.com/in/gabriel-silva-souza-developer/
