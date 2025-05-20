@@ -20,7 +20,7 @@ API RESTful construída com **NestJS** para encurtar URLs, registrar acessos e f
 - [📁 Variáveis de ambiente](#-variáveis-de-ambiente)  
 - [📄 Mapeamento do banco de dados (ERD simplificado)](#-mapeamento-do-banco-de-dados-erd-simplificado) 
 - [🧱 Arquitetura do Projeto](#-arquitetura-do-projeto) 
-- [⚙️ Melhorias futuras e escalabilidade](#melhorias-futuras-e-escalabilidade)
+- [⚙️ Melhorias futuras e escalabilidade](#%EF%B8%8F-melhorias-futuras-e-escalabilidade)
 - [🧑‍💻 Autor](#-autor)  
 
 ---
