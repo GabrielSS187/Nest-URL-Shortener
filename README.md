@@ -11,7 +11,6 @@ API RESTful construída com **NestJS** para encurtar URLs, registrar acessos e f
   - [🔧 Requisitos](#-requisitos)  
   - [🧱 Modo local](#-modo-local)  
   - [🐳 Com Docker](#-com-docker)  
-- [📡 Endpoints da API](#-endpoints-da-api)  
 - [🧪 Testes](#-testes)  
 - [🧱 Arquitetura](#-arquitetura)  
 - [🔐 Segurança](#-segurança)  
