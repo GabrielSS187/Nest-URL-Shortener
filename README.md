@@ -121,7 +121,7 @@ Helmet para cabeçalhos HTTP seguros
 
 Logs estruturados com nestjs-pino
 
-📝 Documentação Swagger
+# 📝 Documentação Swagger
 Acesse: http://localhost:3000/docs
 
 Todos os endpoints documentados com exemplos de request/response
