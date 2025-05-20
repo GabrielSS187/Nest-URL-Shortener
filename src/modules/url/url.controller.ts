@@ -56,7 +56,7 @@ export class UrlController {
   ): Promise<ShortenUrlResponseDto> {
     const userId = (req as any).user?.sub as number;
     const url = await this.urlService.shorten(dto.destination, userId);
-    const base = process.env.BASE_URL ?? 'http://localhost:3000';
+    const base = process.env.BASE_URL ?? 'http://localhost:3000/api';
     return { shortUrl: `${base}/${url.shortCode}` };
   }
 
