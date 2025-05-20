@@ -92,8 +92,6 @@ describe('UrlRedirectController (e2e)', () => {
   });
 
   it('/urls (GET) → clickCount agora = 1', async () => {
-    console.log(jwtToken);
-
     const r = await request(app.getHttpServer())
       .get('/urls')
       .set('Authorization', `Bearer ${jwtToken}`)

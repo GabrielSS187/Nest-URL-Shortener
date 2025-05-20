@@ -63,8 +63,6 @@ export class UrlService {
 
   async redirect(shortCode: string): Promise<string> {
     const url = await this.urlRepo.findByShortCode(shortCode);
-    console.log(url);
-
     if (!url) throw new NotFoundException('URL não encontrada');
     await this.logRepo.logAccess(url.id);
     return url.destination;
