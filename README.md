@@ -58,9 +58,13 @@ npm ci
 # Rode em modo de desenvolvimento
 npm run start:dev
 ```
-A API estará em: http://localhost:3000/api
+- A API estará em: http://localhost:3000/api
 
-Swagger UI: http://localhost:3000/docs
+- Swagger UI: http://localhost:3000/docs
+
+- 🚨 .env obrigatório
+
+- 🚨 Depois do .env rode as migrações do prisma antes de iniciar o servidor
 
 ### 🐳 Com Docker
 ```bash
@@ -70,9 +74,11 @@ docker compose --profile dev up --build
 # Ambiente de produção
 docker compose --profile prod up --build
 ```
-A API estará em: http://localhost:3000/api
+- A API estará em: http://localhost:3000/api
 
-Swagger UI: http://localhost:3000/docs
+- Swagger UI: http://localhost:3000/docs
+
+- 🚨 .env não precisa
 
 # 🧪 Testes
 ```bash
@@ -209,12 +215,15 @@ passos: checkout, Node.js, npm ci, Prisma, lint, testes unitários e E2E
 Exemplo de .env ou .env.example:
 
 ```env
+# Se for usar o docker compose não precisa desse .env
+
 NODE_ENV=development
 PORT=3000
 BASE_URL=http://localhost:3000
 DATABASE_URL=postgresql://postgres:postgres@localhost:5432/ps_shortener
 JWT_SECRET=sua_chave_secreta_aqui
 ```
+- 🚨 Rode as migrações do prisma depois de preencher o ``DATABASE_URL``
 
 # 📄 Mapeamento do banco de dados (ERD simplificado)
 ```md
