@@ -1,0 +1,14 @@
+# Dependências e artefatos
+node_modules
+dist
+coverage
+
+# Controle de versão
+.git
+.gitignore
+
+# Arquivos locais e docs
+Dockerfile*
+docker-compose*.yml
+README.md
+*.log
