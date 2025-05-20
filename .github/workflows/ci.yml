@@ -57,6 +57,8 @@ jobs:
         run: npm run test:e2e
   
   deploy: 
+    if: false
+    
     needs: build-and-test
     runs-on: ubuntu-latest
 
