@@ -60,7 +60,7 @@ describe('UrlRedirectController (e2e)', () => {
       })
       .compile();
 
-    app = mod.createNestApplication();
+    app = mod.createNestApplication({ logger: false });
     app.useGlobalPipes(new ValidationPipe({ whitelist: true }));
     await app.init();
 
@@ -86,7 +86,7 @@ describe('UrlRedirectController (e2e)', () => {
 
   it('/:shortCode (GET) → deve redirecionar para a URL original', async () => {
     await request(app.getHttpServer())
-      .get(`/${shortCode}`)
+      .get(`/url/${shortCode}`)
       .expect(302)
       .expect('Location', 'https://nestjs.com');
   });

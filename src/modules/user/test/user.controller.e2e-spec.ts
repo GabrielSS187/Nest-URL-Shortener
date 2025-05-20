@@ -28,7 +28,7 @@ describe('UserController (e2e)', () => {
       .useClass(InMemoryUserRepository)
       .compile();
 
-    app = mod.createNestApplication();
+    app = mod.createNestApplication({ logger: false });
     app.useGlobalPipes(new ValidationPipe({ whitelist: true }));
     await app.init();
   });

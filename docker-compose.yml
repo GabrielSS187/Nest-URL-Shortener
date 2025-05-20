@@ -16,6 +16,8 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
+    networks:
+      - app-network
 
   nest-prod:
     build:
@@ -35,6 +37,8 @@ services:
     restart: unless-stopped
     profiles:
       - prod
+    networks:
+      - app-network
     command: >
       sh -c "npx prisma migrate deploy &&
              node dist/main.js"
@@ -50,12 +54,14 @@ services:
       DATABASE_URL: postgres://postgres:postgres@db:5432/ps_shortener
     volumes:
       - .:/app
-      - nest_api_node_modules:/app/node_modules
+      - nest_shortener_url_node_modules:/app/node_modules
     depends_on:
       - db
     restart: unless-stopped
     profiles:
       - dev
+    networks:
+      - app-network
     command: >
       sh -c "npx prisma migrate deploy &&
              npm run start:dev"
@@ -70,19 +76,32 @@ services:
       sh -c "if [ ! -d node_modules ]; then npm ci; fi &&
              npm run test && npm run test:e2e"
 
-  studio:
-    image: prisma/prisma:latest
+  prisma-studio:
+    image: node:22-alpine3.17
     container_name: prisma_studio
-    command: studio
-    depends_on:
-      - db
-    environment:
-      PRISMA_CONFIG: |
-        endpoint = "postgresql://postgres:postgres@db:5432/ps_shortener"
+    working_dir: /usr/src/app
+    volumes:
+      - .:/usr/src/app
+    command: npx prisma studio --port 5555 --browser none
     ports:
       - '5555:5555'
+    environment:
+      DATABASE_URL: postgres://postgres:postgres@db:5432/ps_shortener
+    depends_on:
+      db:
+        condition: service_healthy
+      nest-dev:
+        condition: service_started
+    profiles:
+      - dev
+    networks:
+      - app-network
 
 volumes:
   db_data:
   npm-cache:
-  nest_api_node_modules:
+  nest_shortener_url_node_modules:
+
+networks:
+  app-network:
+    driver: bridge

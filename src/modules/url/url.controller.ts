@@ -56,8 +56,8 @@ export class UrlController {
   ): Promise<ShortenUrlResponseDto> {
     const userId = (req as any).user?.sub as number;
     const url = await this.urlService.shorten(dto.destination, userId);
-    const base = process.env.BASE_URL ?? 'http://localhost:3000/api';
-    return { shortUrl: `${base}/${url.shortCode}` };
+    const base = process.env.BASE_URL ?? 'http://localhost:3000';
+    return { shortUrl: `${base}/url/${url.shortCode}` };
   }
 
   @Get()
@@ -97,7 +97,6 @@ export class UrlController {
     @Body() dto: CreateUrlDto,
   ): Promise<UrlWithClicksDto> {
     const updated = await this.urlService.updateUrl(+id, dto.destination);
-    // recarrega clickCount para refletir o valor atual
     const list = await this.urlService.listUrlsWithClicks(updated.userId!);
     const clickInfo = list.find((u) => u.id === updated.id)!;
     return { ...clickInfo };

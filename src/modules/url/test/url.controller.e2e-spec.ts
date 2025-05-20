@@ -61,7 +61,7 @@ describe('UrlController (e2e)', () => {
       })
       .compile();
 
-    app = mod.createNestApplication();
+    app = mod.createNestApplication({ logger: false });
     app.useGlobalPipes(new ValidationPipe({ whitelist: true }));
     await app.init();
 

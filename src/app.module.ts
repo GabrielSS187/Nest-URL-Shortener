@@ -19,11 +19,19 @@ import { HealthModule } from './modules/health/health.module';
     }),
     LoggerModule.forRoot({
       pinoHttp: {
-        transport:
-          process.env.NODE_ENV !== 'production'
-            ? { target: 'pino-pretty' }
-            : undefined,
-        level: process.env.NODE_ENV !== 'production' ? 'debug' : 'info',
+        ...(process.env.NODE_ENV === 'test'
+          ? { level: 'silent' }
+          : {
+              transport: {
+                target: 'pino-pretty',
+                options: {
+                  colorize: true,
+                  translateTime: 'SYS:standard',
+                  singleLine: false,
+                },
+                level: process.env.NODE_ENV !== 'production' ? 'debug' : 'info',
+              },
+            }),
       },
     }),
     HealthModule,

@@ -12,7 +12,7 @@ export class CreateUrlDto {
 
 export class ShortenUrlResponseDto {
   @ApiProperty({
-    example: 'http://localhost:3000/abcd1234',
+    example: 'http://localhost:3000/url/abcd1234',
     description: 'URL encurtada completa',
   })
   shortUrl: string;
