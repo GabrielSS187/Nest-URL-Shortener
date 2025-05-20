@@ -81,9 +81,9 @@ services:
              npm run test && npm run test:e2e"
     depends_on:
       - db
-    restart: unless-stopped
+    restart: "no"
     profiles:
-      - dev
+      - test
     networks:
       - app-network
 
