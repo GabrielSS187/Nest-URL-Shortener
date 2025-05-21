@@ -7,6 +7,7 @@ API RESTful construída com **NestJS** para encurtar URLs, registrar acessos e f
 ## 📋 Sumário
 - [☁️ API Na Cloud Da Render](#%EF%B8%8F-api-na-cloud-da-render) 
 - [📹 Vídeo Construindo CI/CD](#-vídeo-construindo-cicd) 
+- [📽️ Vídeo Explicando as Etapas de Instalação e Testes]() 
 - [📦 Tecnologias](#-tecnologias)  
 - [🚀 Como executar](#-como-executar)  
   - [🔧 Requisitos](#-requisitos)  
@@ -33,6 +34,9 @@ API RESTful construída com **NestJS** para encurtar URLs, registrar acessos e f
 # 📹 Vídeo Construindo CI/CD
 - Vídeo: https://drive.google.com/file/d/1v0bEdVDQH-ytGTOJV8NNxKheED99IjL6/view?usp=sharing
 - Descrição: CI/CD com Github Actions com deploy na cloud da Render
+
+# 📽️ Vídeo Explicando as Etapas de Instalação e Testes
+- Link do Vídeo: https://drive.google.com/file/d/1DPwbnns-gtY-nQvJgnpxEioEh-89hDzA/view?usp=sharing
 
 ## 📦 Tecnologias
 
