@@ -73,6 +73,7 @@ services:
     working_dir: /app
     environment:
       NODE_ENV: test
+      JWT_SECRET: fb57iu48rfh83
     volumes:
       - .:/app:delegated
       - npm-cache:/root/.npm
